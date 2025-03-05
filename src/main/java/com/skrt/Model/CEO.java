@@ -4,6 +4,8 @@ public class CEO {
     private int id;
     private String name;
 
+    /* TODO Observer möster */
+
 
     public CEO() {
 

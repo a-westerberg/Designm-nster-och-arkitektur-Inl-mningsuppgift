@@ -4,6 +4,8 @@ public class OrderService {
     private int id;
     private String name;
 
+    /* TODO Singleton */
+
     public OrderService() {
     }
 
