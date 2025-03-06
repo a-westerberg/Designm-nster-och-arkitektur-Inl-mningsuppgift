@@ -1,13 +1,14 @@
 package com.skrt;
 
+import com.skrt.Model.*;
 import com.skrt.Model.Builder.BuildException;
 import com.skrt.Model.Builder.PantsBuilder;
 import com.skrt.Model.Builder.SkirtBuilder;
 import com.skrt.Model.Builder.TShirtBuilder;
+import com.skrt.Model.Command.CommandProcessor;
+import com.skrt.Model.Command.SetNeckCommand;
+import com.skrt.Model.Command.SetSleeveCommand;
 import com.skrt.Model.Enum.*;
-import com.skrt.Model.Pants;
-import com.skrt.Model.Skirt;
-import com.skrt.Model.TShirt;
 
 public class App {
     public static void main( String[] args ) {
@@ -17,47 +18,57 @@ public class App {
                     .setSize(Size.Medium)
                     .setMaterial(Material.Linnen)
                     .setColor(Color.Black)
-                    .setSleeve(Sleeve.Long)
-                    .setNeck(Neck.V_neck)
                     .build();
 
-            Skirt skirt = new SkirtBuilder()
+            /*Skirt skirt = new SkirtBuilder()
                     .setSize(Size.Small)
                     .setMaterial(Material.Silk)
                     .setColor(Color.Blue)
-                    .setWaistline(Waistline.High)
-                    .setPattern(Pattern.Flower)
                     .build();
 
             Pants jeans = new PantsBuilder()
                     .setSize(Size.Large)
                     .setMaterial(Material.Jeans)
                     .setColor(Color.Blue)
-                    .setFit(Fit.Loose)
-                    .setLenght(Lenght.Long)
                     .build();
             Pants pants = new PantsBuilder()
                     .setSize(Size.Small)
                     .setMaterial(Material.Linnen)
                     .setColor(Color.White)
-                    .setFit(Fit.Regular)
-                    .setLenght(Lenght.ThreeQuaters)
                     .build();
 
             Skirt almaSkirt = new SkirtBuilder()
                     .setSize(Size.Medium)
                     .setMaterial(Material.Linnen)
                     .setColor(Color.Black)
-                    .setWaistline(Waistline.High)
-                    .setPattern(Pattern.Plain)
-                    .build();
+                    .build();*/
+
+            CommandProcessor processor = new CommandProcessor();
+
+            processor.addCommand(new SetSleeveCommand(Sleeve.Short));
+            processor.addCommand(new SetNeckCommand(Neck.V_neck));
+
+            processor.executeCommands(tshirt);
 
 
-            System.out.println("Ett par plagg skapas: ");
-            System.out.println(tshirt);
-            System.out.println(tshirt.getName());
+            CEO ceo = new CEO();
+            OrderService orderService = new OrderService();
+            orderService.addObserver(ceo);
+            Order order = new Order();
+
+            System.out.println("Place order:");
+            orderService.placeOrder(order);
             line();
-            System.out.println(skirt);
+            System.out.println("Complete order:");
+            orderService.completeOrder(order);
+            line();
+
+            System.out.println("Med builder och Command");
+            System.out.println("T-shirt: " + tshirt);
+            System.out.println();
+            line();
+
+            /*System.out.println(skirt);
             System.out.println(skirt.getName());
             line();
             System.out.println(jeans);
@@ -71,7 +82,7 @@ public class App {
 
             System.out.println("Almas kjol:");
             System.out.println(almaSkirt);
-            System.out.println(almaSkirt.getName());
+            System.out.println(almaSkirt.getName());*/
 
 
         } catch (BuildException e){

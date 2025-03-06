@@ -34,7 +34,8 @@ public class PantsBuilder{
         return this;
     }
 
-    public PantsBuilder setFit(Fit fit) {
+    // Här gjorde jag misstaget micke varnade om haha jag lät builder ta hand om steg 4 och 5. korrigerat nu så det bara är steg 1-3
+/*    public PantsBuilder setFit(Fit fit) {
         if(fit == null)
             throw new BuildException("Fit", fit);
         pants.setFit(fit);
@@ -46,22 +47,21 @@ public class PantsBuilder{
             throw new BuildException("Lenght", lenght);
         pants.setLenght(lenght);
         return this;
-    }
+    }*/
 
 
     public Pants build() {
-        if(pants.getMaterial() == null || pants.getColor() == null ||pants.getFit() == null)
+        if(pants.getMaterial() == null || pants.getColor() == null)
             throw new BuildException("Build process", "Pants");
 
         String generatedName;
 
         if(pants.getMaterial().toString() == "Jeans") {
                 generatedName = pants.getColor().toString() + " " +
-                                pants.getFit().toString() + " " +
                                 pants.getMaterial().toString();
         } else {
                 generatedName = pants.getColor().toString() + " " +
-                                pants.getFit().toString() + " " +
+
                                 pants.getMaterial().toString() + " Pants";
 
         }

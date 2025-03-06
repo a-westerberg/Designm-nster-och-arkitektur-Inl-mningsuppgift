@@ -34,6 +34,8 @@ public class SkirtBuilder{
         return this;
     }
 
+    // Här gjorde jag misstaget micke varnade om haha jag lät builder ta hand om steg 4 och 5. korrigerat nu så det bara är steg 1-3
+/*
     public SkirtBuilder setWaistline(Waistline waistline) {
         if(waistline == null)
             throw new BuildException("Waistline", waistline);
@@ -47,15 +49,16 @@ public class SkirtBuilder{
         skirt.setPattern(pattern);
         return this;
     }
+*/
 
 
 
     public Skirt build() {
-        if(skirt.getColor() == null || skirt.getPattern() == null)
+        if(skirt.getColor() == null || skirt.getMaterial() == null)
             throw new BuildException("Build process", "Skirt");
 
         String generatedName = skirt.getColor().toString() + " " +
-                                skirt.getPattern().toString() + " Skirt";
+                                skirt.getMaterial().toString() + " Skirt";
 
         skirt.setName(generatedName);
 

@@ -1,32 +1,42 @@
 package com.skrt.Model;
 
-public class OrderService {
-    private int id;
-    private String name;
+import com.skrt.Model.Observer.Observable;
+import com.skrt.Model.Observer.Observer;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class OrderService implements Observable {
+    private final List<Observer> observers = new ArrayList<>();
 
     /* TODO Singleton */
 
-    public OrderService() {
+    public void placeOrder(Order order) {
+        System.out.println("Order Placed: " + order);
+        notifyObservers("New order from " + order.getCustomer() + ": " + order);
     }
 
-    public OrderService(int id, String name) {
-        this.id = id;
-        this.name = name;
+    public void completeOrder(Order order) {
+        System.out.println("Order Completed: " + order);
+        notifyObservers("New order has been completed: " + order);
     }
 
-    public int getId() {
-        return id;
+
+    @Override
+    public void addObserver(Observer observer) {
+        observers.add(observer);
     }
 
-    public void setId(int id) {
-        this.id = id;
+    @Override
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public void notifyObservers(String message) {
+        for (Observer observer : observers) {
+            observer.update(message);
+        }
     }
 }
