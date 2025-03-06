@@ -18,7 +18,7 @@ public class OrderService implements Observable {
 
     public void completeOrder(Order order) {
         System.out.println("Order Completed: " + order);
-        notifyObservers("New order has been completed: " + order);
+        notifyObservers("New order has been completed from: " + order.getCustomer() + ": " + order);
     }
 
 

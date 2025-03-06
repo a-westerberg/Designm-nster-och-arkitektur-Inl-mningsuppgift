@@ -9,10 +9,12 @@ import com.skrt.Model.Command.CommandProcessor;
 import com.skrt.Model.Command.SetNeckCommand;
 import com.skrt.Model.Command.SetSleeveCommand;
 import com.skrt.Model.Enum.*;
+import com.skrt.View.ConsoleView;
 
 public class App {
     public static void main( String[] args ) {
         /** Testar nedanför kommer ta bort vid senare stadie. **/
+/*
         try{
             TShirt tshirt = new TShirtBuilder()
                     .setSize(Size.Medium)
@@ -20,7 +22,8 @@ public class App {
                     .setColor(Color.Black)
                     .build();
 
-            /*Skirt skirt = new SkirtBuilder()
+            */
+/*Skirt skirt = new SkirtBuilder()
                     .setSize(Size.Small)
                     .setMaterial(Material.Silk)
                     .setColor(Color.Blue)
@@ -41,7 +44,8 @@ public class App {
                     .setSize(Size.Medium)
                     .setMaterial(Material.Linnen)
                     .setColor(Color.Black)
-                    .build();*/
+                    .build();*//*
+
 
             CommandProcessor processor = new CommandProcessor();
 
@@ -68,7 +72,8 @@ public class App {
             System.out.println();
             line();
 
-            /*System.out.println(skirt);
+            */
+/*System.out.println(skirt);
             System.out.println(skirt.getName());
             line();
             System.out.println(jeans);
@@ -82,15 +87,18 @@ public class App {
 
             System.out.println("Almas kjol:");
             System.out.println(almaSkirt);
-            System.out.println(almaSkirt.getName());*/
+            System.out.println(almaSkirt.getName());*//*
+
 
 
         } catch (BuildException e){
             System.out.println("Fel vid byggande av plagg - " + e.getMessage());
-
-
-
         }
+*/
+
+        ConsoleView cv = new ConsoleView();
+        cv.startMenu();
+
     }
     public static void line(){
         System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------");
