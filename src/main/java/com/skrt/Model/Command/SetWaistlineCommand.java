@@ -6,8 +6,10 @@ import com.skrt.Model.Skirt;
 
 public class SetWaistlineCommand implements Command {
     private final Waistline waistline;
+    private Skirt skirt;
 
-    public SetWaistlineCommand(Waistline waistline) {
+    public SetWaistlineCommand(Skirt skirt, Waistline waistline) {
+        this.skirt = skirt;
         this.waistline = waistline;
     }
 

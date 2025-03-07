@@ -6,8 +6,11 @@ import com.skrt.Model.Skirt;
 
 public class SetPatternCommand implements Command {
     private final Pattern pattern;
+    private Skirt skirt;
 
-    public SetPatternCommand(Pattern pattern) {
+
+    public SetPatternCommand(Skirt skirt, Pattern pattern) {
+        this.skirt = skirt;
         this.pattern = pattern;
     }
 

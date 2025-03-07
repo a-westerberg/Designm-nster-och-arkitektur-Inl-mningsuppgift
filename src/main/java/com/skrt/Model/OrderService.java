@@ -12,13 +12,13 @@ public class OrderService implements Observable {
     /* TODO Singleton */
 
     public void placeOrder(Order order) {
-        System.out.println("Order Placed: " + order);
-        notifyObservers("New order from " + order.getCustomer() + ": " + order);
+        System.out.println("Order Placed: " + order + "\n");
+        notifyObservers("New order from " + order.getCustomer() + ": " + order + "\n");
     }
 
     public void completeOrder(Order order) {
-        System.out.println("Order Completed: " + order);
-        notifyObservers("New order has been completed from: " + order.getCustomer() + ": " + order);
+        System.out.println("Order Completed: " + order + "\n");
+        notifyObservers("New order has been completed from: " + order.getCustomer() + ": " + order + "\n");
     }
 
 

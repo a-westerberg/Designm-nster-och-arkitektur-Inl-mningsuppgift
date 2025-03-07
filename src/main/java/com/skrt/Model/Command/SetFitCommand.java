@@ -5,9 +5,11 @@ import com.skrt.Model.Enum.Fit;
 import com.skrt.Model.Pants;
 
 public class SetFitCommand implements Command {
+    private Pants pants;
     private final Fit fit;
 
-    public SetFitCommand(Fit fit) {
+    public SetFitCommand(Pants pants, Fit fit) {
+        this.pants = pants;
         this.fit = fit;
     }
 

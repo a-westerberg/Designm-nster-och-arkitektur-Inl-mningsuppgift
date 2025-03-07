@@ -5,9 +5,11 @@ import com.skrt.Model.Enum.Sleeve;
 import com.skrt.Model.TShirt;
 
 public class SetSleeveCommand implements Command {
+    private TShirt TShirt;
     private final Sleeve sleeve;
 
-    public SetSleeveCommand(Sleeve sleeve) {
+    public SetSleeveCommand(TShirt tShirt, Sleeve sleeve) {
+        this.TShirt = tShirt;
         this.sleeve = sleeve;
     }
 

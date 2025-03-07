@@ -5,9 +5,11 @@ import com.skrt.Model.Enum.Neck;
 import com.skrt.Model.TShirt;
 
 public class SetNeckCommand implements Command {
+    private TShirt tShirt;
     private final Neck neck;
 
-    public SetNeckCommand(Neck neck) {
+    public SetNeckCommand(TShirt tShirt,Neck neck) {
+        this.tShirt = tShirt;
         this.neck = neck;
     }
 

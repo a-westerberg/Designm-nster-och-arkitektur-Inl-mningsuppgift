@@ -5,9 +5,11 @@ import com.skrt.Model.Enum.Lenght;
 import com.skrt.Model.Pants;
 
 public class SetLenghtCommand implements Command {
+    Pants pants;
     private final Lenght lenght;
 
-    public SetLenghtCommand(Lenght lenght) {
+    public SetLenghtCommand(Pants pants, Lenght lenght) {
+        this.pants = pants;
         this.lenght = lenght;
     }
 
