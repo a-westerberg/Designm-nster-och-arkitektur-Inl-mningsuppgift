@@ -5,6 +5,7 @@ import com.skrt.Model.Enum.*;
 public class Skirt extends Clothing{
     private Waistline waistline;
     private Pattern pattern;
+    private double price = 150.0;
 
     public Skirt() {
     }

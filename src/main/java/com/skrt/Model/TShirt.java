@@ -5,6 +5,7 @@ import com.skrt.Model.Enum.*;
 public class TShirt extends Clothing{
     private  Sleeve sleeve;
     private  Neck neck;
+    private double price = 100.0;
 
     public TShirt() {
     }
