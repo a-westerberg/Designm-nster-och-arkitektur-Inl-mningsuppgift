@@ -11,6 +11,12 @@ public class Customer {
     public Customer() {
     }
 
+    public Customer(String name, String email,  String address) {
+        this.name = name;
+        this.email = email;
+        this.address = address;
+    }
+
     public Customer(int id, String name, String address, String email) {
         this.id = id;
         this.name = name;
@@ -51,5 +57,8 @@ public class Customer {
         this.email = email;
     }
 
-
+    @Override
+    public String toString() {
+        return name + " (" + email + ")";
+    }
 }

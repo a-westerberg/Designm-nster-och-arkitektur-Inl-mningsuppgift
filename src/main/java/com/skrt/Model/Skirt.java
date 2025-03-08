@@ -2,66 +2,18 @@ package com.skrt.Model;
 
 import com.skrt.Model.Enum.*;
 
-public class Skirt {
-    private int id;
-    private String name;
-    private Size size;
-    private Material material;
-    private Color color;
+public class Skirt extends Clothing{
     private Waistline waistline;
     private Pattern pattern;
+    private double price = 150.0;
 
     public Skirt() {
     }
 
     public Skirt(int id, String name, Size size, Material material, Color color, Waistline waistline, Pattern pattern) {
-        this.id = id;
-        this.name = name;
-        this.size = size;
-        this.material = material;
-        this.color = color;
+        super(id, name, size, material, color);
         this.waistline = waistline;
         this.pattern = pattern;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Size getSize() {
-        return size;
-    }
-
-    public void setSize(Size size) {
-        this.size = size;
-    }
-
-    public Material getMaterial() {
-        return material;
-    }
-
-    public void setMaterial(Material material) {
-        this.material = material;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
     }
 
     public Waistline getWaistline() {
@@ -82,14 +34,6 @@ public class Skirt {
 
     @Override
     public String toString() {
-        return "Skirt{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", size=" + size +
-                ", material=" + material +
-                ", color=" + color +
-                ", waistline=" + waistline +
-                ", pattern=" + pattern +
-                '}';
+        return super.toString() + ", waistline=" + waistline + ", pattern=" + pattern + "}";
     }
 }
