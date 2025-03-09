@@ -1,25 +1,24 @@
 package com.skrt.View;
 
+import com.skrt.Controller.WebshopController;
 import com.skrt.Model.*;
-import com.skrt.Model.Builder.PantsBuilder;
-import com.skrt.Model.Builder.SkirtBuilder;
-import com.skrt.Model.Builder.TShirtBuilder;
-import com.skrt.Model.Command.*;
 import com.skrt.Model.Enum.*;
-import java.sql.SQLOutput;
+
 import java.util.Scanner;
 
 public class ConsoleView {
-    /* TODO menysystem och interaktion */
 
     private Scanner scanner = new Scanner(System.in);
-    private OrderService orderService = new OrderService();
+    private WebshopController controller = new WebshopController();
+
+    private OrderService orderService = OrderService.getInstance();
     private CEO ceo = new CEO();
     private Customer customer;
 
 
+
+
     public ConsoleView() {
-        orderService.addObserver(ceo);
     }
 
     public void startMenu(){
@@ -27,33 +26,32 @@ public class ConsoleView {
 
         boolean running = true;
         while (running) {
-
-
             System.out.print("-------------------");
             System.out.println("\n WIGELL WEBSHOP");
             System.out.println("-------------------");
             System.out.println("1. Create Pants");
             System.out.println("2. Create T-Shirt");
             System.out.println("3. Create Skirt");
-            System.out.println("4. Place Order");
+            System.out.println("4. Checkout");
             System.out.println("5. Exit.");
             System.out.print("Enter your choice: ");
 
-            int menuOption = scanner.nextInt();
-            scanner.nextLine();
+            String menuOption = scanner.nextLine();
             switch (menuOption) {
-                case 1 -> createPants();
-                case 2 -> createTShirt();
-                case 3 -> createSkirt();
-                case 4 -> placeOrder();
-                case 5 -> running = false;
+                case "1" -> createPants();
+                case "2" -> createTShirt();
+                case "3" -> createSkirt();
+                case "4" -> controller.completeOrder();
+                case "5" -> running = false;
                 default -> System.out.println("Invalid option, please try again");
             }
         }
-        System.out.println("Exiting...");
+        System.out.println("\nExiting...");
     }
 
-    private void placeOrder(){
+    // Old
+    private void completeOrder(){
+        Receipt receipt = new Receipt();
         if(Cart.isEmpty()){
             clearConsole();
             System.out.println("Cart is empty, add clothing before checking out");
@@ -62,11 +60,13 @@ public class ConsoleView {
         clearConsole();
         Order order = new Order(Cart.getItems(), customer);
 
-        orderService.placeOrder(order);
+        orderService.completeOrder(order);
+        receipt.printReceipt(order);
+
         Cart.clear();
     }
 
-    private void registerCustomer(){
+    /** Old private void registerCustomer(){
         System.out.println("\nWelcome to WIGELL WEBSHOP\nTo start shopping you need to register yourself.");
         System.out.print("Enter your name: ");
         String name = scanner.nextLine();
@@ -82,10 +82,29 @@ public class ConsoleView {
         System.out.print("Press any button to continue");
         scanner.nextLine();
         clearConsole();
+    }**/
+    private void registerCustomer(){
+        System.out.println("\nWelcome to WIGELL WEBSHOP\nTo start shopping you need to register yourself.");
+        System.out.print("Enter your name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter your email: ");
+        String email = scanner.nextLine();
+        System.out.print("Enter your address: ");
+        String address = scanner.nextLine();
+
+        controller.registerCustomer(name, email, address);
+
+        System.out.println("\nRegistration successful!\nWelcome " + controller.getCustomer().getName());
+        System.out.println();
+        System.out.println("Here at Wigells you can create and design your own cloths");
+        System.out.print("Press any button to continue");
+        scanner.nextLine();
+        clearConsole();
     }
 
-    private void createPants(){
+   /** Old private void createPants(){
         clearConsole();
+        orderService.notifyObservers("Production of new pants has begun");
         System.out.println("\nCreating pant:");
         PantsBuilder builder = new PantsBuilder();
         builder.setSize(selectSize());
@@ -101,11 +120,26 @@ public class ConsoleView {
         lenghtCommand.execute(pants);
 
         System.out.println("Created: {" + pants.getName() + "}\n");
-        Cart.addItem(pants);
-    }
 
-    private void createTShirt(){
+        orderService.notifyObservers("New pants created: " + pants.getName());
+
+        Cart.addItem(pants);
+    }**/
+   private void createPants(){
+       orderService.notifyObservers("Production of new pants has begun");
+       System.out.println("\nCreating pants: ");
+       Size size = selectSize();
+       Material material = selectMaterial();
+       Color color = selectColor();
+       Fit fit = selectFit();
+       Lenght lenght = selectLenght();
+
+       controller.createPants(size, material, color, fit, lenght);
+   }
+
+    /** Old private void createTShirt(){
         clearConsole();
+        orderService.notifyObservers("Production of new T-Shirt has begun");
         System.out.println("\nCreating t-shirt:");
         TShirtBuilder builder = new TShirtBuilder();
         builder.setSize(selectSize());
@@ -121,11 +155,28 @@ public class ConsoleView {
         neckCommand.execute(tShirt);
 
         System.out.println("Created: {" + tShirt.getName() + "}\n");
+
+        orderService.notifyObservers("New pants created: " + tShirt.getName());
+
         Cart.addItem(tShirt);
+    }**/
+    private void createTShirt(){
+
+        orderService.notifyObservers("Production of new T-Shirt has begun");
+        System.out.println("\nCreating T-Shirt:");
+        Size size = selectSize();
+        Material material = selectMaterial();
+        Color color = selectColor();
+        Sleeve sleeve = selectSleeve();
+        Neck neck = selectNeck();
+
+        controller.createTShirt(size,material,color,sleeve,neck);
+
     }
 
-    private void createSkirt(){
+    /** Old private void createSkirt(){
         clearConsole();
+        orderService.notifyObservers("Production of new Skirt has begun");
         System.out.println("\nCreating skirt:");
         SkirtBuilder builder = new SkirtBuilder();
         builder.setSize(selectSize());
@@ -141,7 +192,22 @@ public class ConsoleView {
         patternCommand.execute(skirt);
 
         System.out.println("Created: {" + skirt.getName() + "}\n");
+
+        orderService.notifyObservers("New Skirt created: " + skirt.getName());
+
         Cart.addItem(skirt);
+    }*/
+    private void createSkirt(){
+
+        orderService.notifyObservers("Production of new Skirt has begun");
+        System.out.println("\nCreating skirt:");
+        Size size = selectSize();
+        Material material = selectMaterial();
+        Color color = selectColor();
+        Waistline waistline = selectWaistline();
+        Pattern pattern = selectPattern();
+
+        controller.createSkirt(size,material,color,waistline,pattern);
     }
 
 
@@ -196,19 +262,26 @@ public class ConsoleView {
     }
 
     private <T extends Enum<T>> T selectEnum(T[] values){
-        for (int i = 0; i < values.length; i++) {
-            System.out.println((i + 1) + ". " + values[i]);
-        }
-        System.out.print("Enter your choice: ");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println();
+        while(true){
+            for (int i = 0; i < values.length; i++) {
+                System.out.println((i + 1) + ". " + values[i]);
+            }
+            System.out.print("Enter your choice: ");
 
-        if (choice < 1 || choice > values.length) {
-            System.out.println("Invalid choice, please try again");
-            return selectEnum(values);
+            String input = scanner.nextLine();
+            System.out.println();
+
+            try{
+                int choice = Integer.parseInt(input);
+                if (choice >= 1 && choice <= values.length) {
+                    return values[choice - 1];
+                } else {
+                    System.out.println("Invalid choice, please enter a number between 1 and " + (values.length));
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input, please enter a valid number.");
+            }
         }
-        return values[choice - 1];
     }
 
 }

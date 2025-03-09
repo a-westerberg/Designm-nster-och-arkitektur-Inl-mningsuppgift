@@ -10,6 +10,7 @@ public abstract class Clothing {
     protected Size size;
     protected Material material;
     protected Color color;
+    protected double price;
 
     public Clothing() {
     }
@@ -20,6 +21,15 @@ public abstract class Clothing {
         this.size = size;
         this.material = material;
         this.color = color;
+    }
+
+    public Clothing(int id, String name, Size size, Material material, Color color, double price) {
+        this.id = id;
+        this.name = name;
+        this.size = size;
+        this.material = material;
+        this.color = color;
+        this.price = price;
     }
 
     public int getId() {
@@ -60,6 +70,14 @@ public abstract class Clothing {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     @Override

@@ -7,9 +7,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderService implements Observable {
+    private static OrderService instance;
     private final List<Observer> observers = new ArrayList<>();
 
     /* TODO Singleton */
+
+    private OrderService() {
+
+    }
+
+    public static OrderService getInstance() {
+        if (instance == null) {
+            instance = new OrderService();
+        }
+        return instance;
+    }
 
     public void placeOrder(Order order) {
         System.out.println("Order Placed: " + order + "\n");
@@ -17,7 +29,7 @@ public class OrderService implements Observable {
     }
 
     public void completeOrder(Order order) {
-        System.out.println("Order Completed: " + order + "\n");
+        System.out.println("Order Completed: " + order.getItems() + "\n");
         notifyObservers("New order has been completed from: " + order.getCustomer() + ": " + order + "\n");
     }
 
