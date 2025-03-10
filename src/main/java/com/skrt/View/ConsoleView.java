@@ -49,40 +49,6 @@ public class ConsoleView {
         System.out.println("\nExiting...");
     }
 
-    // Old
-    private void completeOrder(){
-        Receipt receipt = new Receipt();
-        if(Cart.isEmpty()){
-            clearConsole();
-            System.out.println("Cart is empty, add clothing before checking out");
-            return;
-        }
-        clearConsole();
-        Order order = new Order(Cart.getItems(), customer);
-
-        orderService.completeOrder(order);
-        receipt.printReceipt(order);
-
-        Cart.clear();
-    }
-
-    /** Old private void registerCustomer(){
-        System.out.println("\nWelcome to WIGELL WEBSHOP\nTo start shopping you need to register yourself.");
-        System.out.print("Enter your name: ");
-        String name = scanner.nextLine();
-        System.out.print("Enter your email: ");
-        String email = scanner.nextLine();
-        System.out.print("Enter your address: ");
-        String address = scanner.nextLine();
-
-        customer = new Customer(name, email, address);
-        System.out.println("\nRegistration successful!\nWelcome " + customer.getName());
-        System.out.println();
-        System.out.println("Here at Wigells you can create and design your own cloths");
-        System.out.print("Press any button to continue");
-        scanner.nextLine();
-        clearConsole();
-    }**/
     private void registerCustomer(){
         System.out.println("\nWelcome to WIGELL WEBSHOP\nTo start shopping you need to register yourself.");
         System.out.print("Enter your name: ");
@@ -102,29 +68,6 @@ public class ConsoleView {
         clearConsole();
     }
 
-   /** Old private void createPants(){
-        clearConsole();
-        orderService.notifyObservers("Production of new pants has begun");
-        System.out.println("\nCreating pant:");
-        PantsBuilder builder = new PantsBuilder();
-        builder.setSize(selectSize());
-        builder.setMaterial(selectMaterial());
-        builder.setColor(selectColor());
-        Pants pants = builder.build();
-
-        System.out.println("Final touches to style your order:");
-        Command fitCommand = new SetFitCommand(pants, selectFit());
-        Command lenghtCommand = new SetLenghtCommand(pants, selectLenght());
-
-        fitCommand.execute(pants);
-        lenghtCommand.execute(pants);
-
-        System.out.println("Created: {" + pants.getName() + "}\n");
-
-        orderService.notifyObservers("New pants created: " + pants.getName());
-
-        Cart.addItem(pants);
-    }**/
    private void createPants(){
        orderService.notifyObservers("Production of new pants has begun");
        System.out.println("\nCreating pants: ");
@@ -137,31 +80,7 @@ public class ConsoleView {
        controller.createPants(size, material, color, fit, lenght);
    }
 
-    /** Old private void createTShirt(){
-        clearConsole();
-        orderService.notifyObservers("Production of new T-Shirt has begun");
-        System.out.println("\nCreating t-shirt:");
-        TShirtBuilder builder = new TShirtBuilder();
-        builder.setSize(selectSize());
-        builder.setMaterial(selectMaterial());
-        builder.setColor(selectColor());
-        TShirt tShirt = builder.build();
-
-        System.out.println("Final touches to style your order:");
-        Command sleeveCommand = new SetSleeveCommand(tShirt, selectSleeve());
-        Command neckCommand = new SetNeckCommand(tShirt, selectNeck());
-
-        sleeveCommand.execute(tShirt);
-        neckCommand.execute(tShirt);
-
-        System.out.println("Created: {" + tShirt.getName() + "}\n");
-
-        orderService.notifyObservers("New pants created: " + tShirt.getName());
-
-        Cart.addItem(tShirt);
-    }**/
     private void createTShirt(){
-
         orderService.notifyObservers("Production of new T-Shirt has begun");
         System.out.println("\nCreating T-Shirt:");
         Size size = selectSize();
@@ -174,31 +93,7 @@ public class ConsoleView {
 
     }
 
-    /** Old private void createSkirt(){
-        clearConsole();
-        orderService.notifyObservers("Production of new Skirt has begun");
-        System.out.println("\nCreating skirt:");
-        SkirtBuilder builder = new SkirtBuilder();
-        builder.setSize(selectSize());
-        builder.setMaterial(selectMaterial());
-        builder.setColor(selectColor());
-        Skirt skirt = builder.build();
-
-        System.out.println("Final touches to style your order:");
-        Command waistlineCommand = new SetWaistlineCommand(skirt, selectWaistline());
-        Command patternCommand = new SetPatternCommand(skirt, selectPattern());
-
-        waistlineCommand.execute(skirt);
-        patternCommand.execute(skirt);
-
-        System.out.println("Created: {" + skirt.getName() + "}\n");
-
-        orderService.notifyObservers("New Skirt created: " + skirt.getName());
-
-        Cart.addItem(skirt);
-    }*/
     private void createSkirt(){
-
         orderService.notifyObservers("Production of new Skirt has begun");
         System.out.println("\nCreating skirt:");
         Size size = selectSize();
@@ -209,8 +104,6 @@ public class ConsoleView {
 
         controller.createSkirt(size,material,color,waistline,pattern);
     }
-
-
 
     private void clearConsole(){
         System.out.println("\n\n\n\n\n");

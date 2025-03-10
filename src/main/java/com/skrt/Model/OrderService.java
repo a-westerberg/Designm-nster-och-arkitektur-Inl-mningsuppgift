@@ -10,8 +10,6 @@ public class OrderService implements Observable {
     private static OrderService instance;
     private final List<Observer> observers = new ArrayList<>();
 
-    /* TODO Singleton */
-
     private OrderService() {
 
     }
@@ -23,13 +21,7 @@ public class OrderService implements Observable {
         return instance;
     }
 
-    public void placeOrder(Order order) {
-        System.out.println("Order Placed: " + order + "\n");
-        notifyObservers("New order from " + order.getCustomer() + ": " + order + "\n");
-    }
-
     public void completeOrder(Order order) {
-       /* System.out.println("Order Completed: " + order.getItems() + "\n");*/
         notifyObservers("New order has been completed from: " + order.getCustomer() + ":\n" + order + "\n");
     }
 
