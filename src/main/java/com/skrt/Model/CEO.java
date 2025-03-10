@@ -6,8 +6,6 @@ public class CEO implements Observer {
     private int id = 1;
     private String name = "Alex";
 
-    /* TODO Observer möster */
-
 
     public CEO() {
 
