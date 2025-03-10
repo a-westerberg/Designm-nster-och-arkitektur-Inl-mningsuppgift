@@ -34,24 +34,6 @@ public class TShirtBuilder{
         return this;
     }
 
-    // Här gjorde jag misstaget micke varnade om haha jag lät builder ta hand om steg 4 och 5. korrigerat nu så det bara är steg 1-3
-/*
-    public TShirtBuilder setSleeve(Sleeve sleeve) {
-        if(sleeve == null)
-            throw new BuildException("Sleeve", sleeve);
-        tShirt.setSleeve(sleeve);
-        return this;
-    }
-
-    public TShirtBuilder setNeck(Neck neck) {
-        if(neck == null)
-            throw new BuildException("Neck", neck);
-        tShirt.setNeck(neck);
-        return this;
-    }*/
-
-
-
     public TShirt build() {
         if(tShirt.getColor() == null ||tShirt.getMaterial() == null)
             throw new BuildException("Build process", "TShirt");

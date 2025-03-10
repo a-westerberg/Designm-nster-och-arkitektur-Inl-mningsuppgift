@@ -5,7 +5,7 @@ import com.skrt.Model.Enum.*;
 public class TShirt extends Clothing{
     private  Sleeve sleeve;
     private  Neck neck;
-    private double price = 100.0;
+    private  final double price = 100.0;
 
     public TShirt() {
     }
@@ -31,6 +31,11 @@ public class TShirt extends Clothing{
     public void setNeck(Neck neck) {
         this.neck = neck;
     }
+
+    public double getPrice() {
+        return price;
+    }
+
 
     @Override
     public String toString() {

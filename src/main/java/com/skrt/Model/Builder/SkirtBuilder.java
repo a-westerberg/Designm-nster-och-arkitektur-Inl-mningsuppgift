@@ -34,25 +34,6 @@ public class SkirtBuilder{
         return this;
     }
 
-    // Här gjorde jag misstaget micke varnade om haha jag lät builder ta hand om steg 4 och 5. korrigerat nu så det bara är steg 1-3
-/*
-    public SkirtBuilder setWaistline(Waistline waistline) {
-        if(waistline == null)
-            throw new BuildException("Waistline", waistline);
-        skirt.setWaistline(waistline);
-        return this;
-    }
-
-    public SkirtBuilder setPattern(Pattern pattern) {
-        if(pattern == null)
-            throw new BuildException("Pattern", pattern);
-        skirt.setPattern(pattern);
-        return this;
-    }
-*/
-
-
-
     public Skirt build() {
         if(skirt.getColor() == null || skirt.getMaterial() == null)
             throw new BuildException("Build process", "Skirt");

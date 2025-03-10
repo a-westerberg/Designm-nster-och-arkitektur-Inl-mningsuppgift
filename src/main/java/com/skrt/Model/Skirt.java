@@ -5,7 +5,7 @@ import com.skrt.Model.Enum.*;
 public class Skirt extends Clothing{
     private Waistline waistline;
     private Pattern pattern;
-    private double price = 150.0;
+    private final double price = 150.0;
 
     public Skirt() {
     }
@@ -31,6 +31,11 @@ public class Skirt extends Clothing{
     public void setPattern(Pattern pattern) {
         this.pattern = pattern;
     }
+
+    public double getPrice() {
+        return price;
+    }
+
 
     @Override
     public String toString() {
