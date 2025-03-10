@@ -8,11 +8,14 @@ import com.skrt.Model.Command.*;
 import com.skrt.Model.Enum.*;
 import com.skrt.View.Receipt;
 
+import java.util.Scanner;
+
 public class WebshopController {
 
     private OrderService orderService = OrderService.getInstance();
     private CEO ceo = new CEO();
     private Customer customer;
+    private Scanner scanner = new Scanner(System.in);
 
     public WebshopController(){
         orderService.addObserver(ceo);
@@ -27,6 +30,7 @@ public class WebshopController {
             System.out.println("Cart is empty, add clothing before checking out");
             return;
         }
+        System.out.println();
         Order order = new Order(Cart.getItems(), customer);
         orderService.completeOrder(order);
         new Receipt().printReceipt(order);
@@ -47,8 +51,10 @@ public class WebshopController {
         lenghtCommand.execute(pants);
 
         orderService.notifyObservers("New Pants created: " + pants.getName());
-
         Cart.addItem(pants);
+
+        System.out.print("\nPress any button to go back to menu where you can checkout or create another piece of clothing: ");
+        String goToMenu = scanner.nextLine();
     }
 
     public void createTShirt(Size size, Material material, Color color, Sleeve sleeve, Neck neck){
@@ -66,6 +72,9 @@ public class WebshopController {
 
         orderService.notifyObservers("New T-Shirt created: " + tshirt.getName());
         Cart.addItem(tshirt);
+
+        System.out.print("\nPress any button to go back to menu where you can checkout or create another piece of clothing: ");
+        String goToMenu = scanner.nextLine();
     }
 
     public void createSkirt(Size size, Material material, Color color, Waistline waistline, Pattern pattern){
@@ -83,6 +92,10 @@ public class WebshopController {
 
         orderService.notifyObservers("New Skirt created: " + skirt.getName());
         Cart.addItem(skirt);
+
+        System.out.print("\nPress any button to go back to menu where you can checkout or create another piece of clothing: ");
+        String goToMenu = scanner.nextLine();
+
     }
 
 
