@@ -44,11 +44,11 @@ public class WebshopController {
         builder.setColor(color);
         Pants pants = builder.build();
 
-        Command fitCommand = new SetFitCommand(pants, fit);
-        Command lenghtCommand = new SetLenghtCommand(pants, lenght);
+        PipelineCommand pipeline = new PipelineCommand();
+        pipeline.addCommand(new SetFitCommand(pants, fit));
+        pipeline.addCommand(new SetLenghtCommand(pants, lenght));
 
-        fitCommand.execute(pants);
-        lenghtCommand.execute(pants);
+        pipeline.execute(pants);
 
         orderService.notifyObservers("New Pants created: " + pants.getName());
         Cart.addItem(pants);
@@ -64,11 +64,11 @@ public class WebshopController {
         builder.setColor(color);
         TShirt tshirt = builder.build();
 
-        Command sleeveCommand = new SetSleeveCommand(tshirt, sleeve);
-        Command neckCommand = new SetNeckCommand(tshirt, neck);
+        PipelineCommand pipeline = new PipelineCommand();
+        pipeline.addCommand(new SetSleeveCommand(tshirt,sleeve));
+        pipeline.addCommand(new SetNeckCommand(tshirt,neck));
 
-        sleeveCommand.execute(tshirt);
-        neckCommand.execute(tshirt);
+        pipeline.execute(tshirt);
 
         orderService.notifyObservers("New T-Shirt created: " + tshirt.getName());
         Cart.addItem(tshirt);
@@ -84,11 +84,11 @@ public class WebshopController {
         builder.setColor(color);
         Skirt skirt = builder.build();
 
-        Command waistlineCommand = new SetWaistlineCommand(skirt, waistline);
-        Command patternCommand = new SetPatternCommand(skirt, pattern);
+        PipelineCommand pipeline = new PipelineCommand();
+        pipeline.addCommand(new SetWaistlineCommand(skirt,waistline));
+        pipeline.addCommand(new SetPatternCommand(skirt,pattern));
 
-        waistlineCommand.execute(skirt);
-        patternCommand.execute(skirt);
+        pipeline.execute(skirt);
 
         orderService.notifyObservers("New Skirt created: " + skirt.getName());
         Cart.addItem(skirt);

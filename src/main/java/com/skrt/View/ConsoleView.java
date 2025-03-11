@@ -125,31 +125,37 @@ public class ConsoleView {
     }
 
     private Sleeve selectSleeve(){
+        System.out.println("Sewing to desired sleeve type\n");
         System.out.println("Select a Sleeve:");
         return selectEnum(Sleeve.values());
     }
 
     private Neck selectNeck(){
+        System.out.println("Sewing to desired neckline\n");
         System.out.println("Select a Neck:");
         return selectEnum(Neck.values());
     }
 
     private Fit selectFit(){
+        System.out.println("Sewing to desired fit\n");
         System.out.println("Select a Fit:");
         return selectEnum(Fit.values());
     }
 
     private Lenght selectLenght(){
+        System.out.println("Cutting to desired length\n");
         System.out.println("Select a Lenght:");
         return selectEnum(Lenght.values());
     }
 
     private Waistline selectWaistline(){
+        System.out.println("Sewing to desired waistline\n");
         System.out.println("Select a Waistline:");
         return selectEnum(Waistline.values());
     }
 
     private Pattern selectPattern(){
+        System.out.println("Applying desired pattern\n");
         System.out.println("Select a Pattern:");
         return selectEnum(Pattern.values());
     }
